@@ -1,0 +1,35 @@
+class Solution:
+    def numRescueBoats(self, people: List[int], limit: int) -> int:
+ 
+        people.sort() 
+    
+        #use a two pointer method, to put the heavest person and the least heavy person together 
+
+        noOfBoats = 0 
+        
+        leftPointer, rightPointer = 0, len(people)-1
+        
+        while leftPointer <= rightPointer:
+        #poiters can be = to each other, which means they are pointing at the same element
+
+            remainingWeight = limit - people[rightPointer]
+            #putting the heaviest person on the boat first 
+            #cheaking the weight limit left on the boat after the heavist person is on 
+
+            rightPointer -=  1
+            #decrimenting right pointer as we removed the heaviest person 
+
+            noOfBoats += 1 
+            #incrementing noOfBoats needed 
+
+            #now we want to check if the lightest person can be paired with this person 
+            # first we will check if there is any people left (<= because we decremented our pointer in above step)
+            #then we check if they weight <= than the remaining to see if they can fit 
+
+            if leftPointer <= rightPointer and remainingWeight >= people[leftPointer]:
+                leftPointer += 1 
+                
+            
+        return noOfBoats
+                
+            
