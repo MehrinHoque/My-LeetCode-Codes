@@ -1,0 +1,36 @@
+class Solution:
+    def validMountainArray(self, arr: List[int]) -> bool:
+        
+        #solution idea: have one pointer that checks if the next element is more than the current element. Once the next element is not > than current element, check if it is less than current element.
+        
+        
+        pointer = 0 
+        
+        
+        #checking for strictly increasing 
+        while (pointer + 1 < len(arr)) and (arr[pointer] < arr[pointer + 1]) :
+            pointer += 1 
+            
+        #checking if peak is the first or last element
+        if (pointer==0) or (pointer==len(arr)-1):
+            return False 
+        
+        
+        #checking for strictly decreasing 
+        # this statement does not work 
+        #while (arr[pointer] > arr[pointer + 1]) and (pointer + 1 < len(arr)):
+            pointer += 1 
+            
+        #checking for strictly decreasing 
+        while pointer + 1 < len(arr) and arr[pointer] > arr[pointer + 1]:
+            pointer += 1 
+            
+        
+        if (pointer == len(arr) - 1):
+            return True
+        
+
+        
+        
+                
+        
